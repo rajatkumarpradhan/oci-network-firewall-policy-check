@@ -1,0 +1,12 @@
+{
+  "policies": [
+    {"name": "prod-egress", "logging": true, "description": "controlled egress",
+     "rules": [
+       {"name": "allow-web-to-lb", "action": "ALLOW",
+        "source": ["10.0.1.0/24"], "destination": ["10.0.2.0/24"]},
+       {"name": "drop-known-bad", "action": "DROP",
+        "source": ["any"], "destination": ["203.0.113.0/24"]}
+     ]}
+  ],
+  "firewalls": [{"name": "fw-prod", "policy": "prod-egress"}]
+}
