@@ -1,0 +1,17 @@
+{
+  "policies": [
+    {"name": "edge-open", "logging": true, "description": "temporary migration policy",
+     "rules": [{"name": "allow-all-temp", "action": "ALLOW", "source": [], "destination": []}]},
+    {"name": "empty-policy", "logging": true, "description": "placeholder", "rules": []},
+    {"name": "ids-watch", "logging": false, "description": "intrusion detection pilot",
+     "rules": [{"name": "inspect-east-west", "action": "IDPS",
+                "source": ["10.0.0.0/16"], "destination": ["10.1.0.0/16"]}]},
+    {"name": "draft-policy", "logging": true, "description": "work in progress",
+     "rules": [{"name": "allow-web", "action": "ALLOW",
+                "source": ["10.0.0.0/16"], "destination": ["10.1.0.0/24"]}]}
+  ],
+  "firewalls": [
+    {"name": "fw-prod", "policy": "edge-open"},
+    {"name": "fw-lab", "policy": "ids-watch"}
+  ]
+}
